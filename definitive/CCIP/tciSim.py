@@ -53,12 +53,12 @@ class App(tk.Tk):
         
         
         self.a_button= tk.Button(self, text='Check values', command= self.option_changed)
-        self.a_button.grid(row=2, column=3, rowspan=2)
+        self.a_button.grid(row=7, column=1, rowspan=1, columnspan=2, padx=5, pady= 15, sticky= tk.SW)
         self.start_button= ttk.Button(self, text='Start', 
                                       command= self.start,
                                       state= 'disabled',
                                       )
-        self.start_button.grid(row=4, column= 3, rowspan= 2)
+        self.start_button.grid(row=9, column= 1, sticky=tk.SW, padx=5, pady= 15)
    
     def create_widgets(self):
         # padding for widgets using the grid layout
