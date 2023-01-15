@@ -9,7 +9,7 @@ choose an option
 """
 import tkinter as tk
 from tkinter import ttk
-#import subprocess
+
 from subprocess import Popen
 
 
