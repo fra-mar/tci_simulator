@@ -168,9 +168,13 @@ class App(tk.Tk):
                             f'{self.g[0]}'])
     
 
-if __name__ == "__main__":
-    app = App()
+def main():
     
+    return App()
+
+if __name__ == "__main__":
+    #app = App()
+    app= main()
  
     
     app.mainloop()
