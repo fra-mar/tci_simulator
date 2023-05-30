@@ -16,15 +16,19 @@ from subprocess import Popen
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.geometry("600x300+200+200")
+        self.geometry("600x300+10+10")
         self.title('TCI simulator. Start menu')
+        self.configure(bg= '#f9cb9c')
         paddings = {'padx': 5, 'pady': 5}
+        s= ttk.Style()
+        s.configure('TMenubutton', background= '#b0ebf4')
+        s.configure('TButton', background= '#e69138', foreground= 'black')
        
         # initialize data
         self.models = ('Schnider, propofol',
                        'Minto, remifentanil',
                        'Gepts, sufentanil',
-                       'Eleveld, propofol')
+                       'Eleveld(test), propofol')
         self.genders= ('male', 'female')
         
         self.age= tk.DoubleVar(self,  value= 50)
@@ -52,40 +56,69 @@ class App(tk.Tk):
         self.h.grid(row= 5, column= 1, sticky=tk.W, **paddings)
         
         
-        self.a_button= tk.Button(self, text='Check values', command= self.option_changed)
-        self.a_button.grid(row=7, column=1, rowspan=1, columnspan=2, padx=5, pady= 15, sticky= tk.SW)
+        self.a_button= tk.Button(self, text='Check values', 
+                                 command= self.option_changed,
+                                 bg= '#13cbe7')
+        self.a_button.grid(row=8, column=1, rowspan=1, columnspan=2, padx=5, pady= 15, sticky= tk.SW)
         self.start_button= ttk.Button(self, text='Start', 
                                       command= self.start,
-                                      state= 'disabled',
+                                      state= 'disabled'
                                       )
-        self.start_button.grid(row=9, column= 1, sticky=tk.SW, padx=5, pady= 15)
+        self.start_button.grid(row=8, column= 3, 
+                               rowspan= 2, 
+                               sticky=tk.SW, padx=5, pady= 15)
    
     def create_widgets(self):
         # padding for widgets using the grid layout
         paddings = {'padx': 5, 'pady': 5}
 
         # labels
-        label_models = ttk.Label(self,  text='Model, drug. Pump1')
+        label_models = ttk.Label(self,  text='Model, drug. Pump1',
+                                 background= '#f9cb9c')
         label_models.grid(column=0, row=0, sticky=tk.W, **paddings)
         
         
-        label_models2 = ttk.Label(self, text='Model, drug. Pump2')
+        label_models2 = ttk.Label(self, text='Model, drug. Pump2',
+                                 background= '#f9cb9c')
         label_models2.grid(column= 0, row= 1, sticky=tk.W, **paddings)
 
         
-        label_age= ttk.Label(self, text='Age(yr)')
+        label_age= ttk.Label(self, text='Age(yr)',
+                                 background= '#f9cb9c')
         label_age.grid(column=0, row=3, sticky=tk.E, **paddings)
         
-        label_weight= ttk.Label(self, text='Weight(Kg)')
+        label_weight= ttk.Label(self, text='Weight(Kg)',
+                                 background= '#f9cb9c')
         label_weight.grid(column=0, row=4, sticky=tk.E, **paddings)
         
-        label_height= ttk.Label(self, text='Height(cm)')
+        label_height= ttk.Label(self, text='Height(cm)',
+                                 background= '#f9cb9c')
         label_height.grid(column=0, row=5, sticky=tk.E, **paddings)
         
-        label_genders = ttk.Label(self,  text='Gender')
-        label_genders.grid(column=0, row=6, sticky=tk.E, **paddings)
+        label_genders = ttk.Label(self,  text='Gender',
+                                 background= '#f9cb9c')
+        label_genders.grid(column=0, row=6, **paddings)
+        
+        warning='Eleveld model not fully implemented'
+        label_warning= tk.Label(self,  text=warning,
+                                 background= '#f9cb9c',
+                                 foreground= '#6aa84f',
+                                 font= ('Cambria',8))
+        label_warning.grid(column=2, row=0, 
+                           columnspan= 2,sticky=tk.E, **paddings)
+        
+        info='Not for clinical use. Free to distribute. Francisco Martinez Torrente. May 2023'
+      
+       
+        label_info= tk.Label(self,  text= info,
+                                 background= '#f9cb9c',
+                                 foreground= '#38761d',
+                                 font= ('Cambria',8))
+        label_info.grid(column=0, 
+                        columnspan=5,rowspan=2, row=10, sticky=tk.SW, **paddings)
 
         # option menus
+        
         model_menu = ttk.OptionMenu(
             self,
             self.model_var,
@@ -96,7 +129,7 @@ class App(tk.Tk):
         
         activate_pump2= ttk.Checkbutton(
             self,
-            command= lambda: model_menu2.configure(state= 'enabled'),
+            command= lambda: model_menu2.configure(state= 1),
             text= 'Activate',
             variable= self.second_pump,
             onvalue= 'yes',
@@ -111,6 +144,8 @@ class App(tk.Tk):
             command= self.option_changed)
         model_menu2.grid(column=1, row=1, sticky=tk.W, **paddings)
         model_menu2.configure(state= 'disabled')
+       
+        
         
         gender_menu = ttk.OptionMenu(
             self,
@@ -122,7 +157,9 @@ class App(tk.Tk):
 
         # output label
         self.output_label = ttk.Label(self, foreground='red')
-        self.output_label.grid(column=1, row=7, sticky=tk.W, **paddings)
+        self.output_label.grid(column=1, row=7, 
+                               columnspan= 2, 
+                               sticky=tk.W, **paddings)
 
     def option_changed(self, *args):
         
@@ -145,7 +182,7 @@ class App(tk.Tk):
         if self.h <20 or self.w > 230:
             output_text += 'Valid height 20-230cm\n'
         else:
-            output_text= 'Check the data.\nIf you are sure,\npress START'
+            output_text= 'Press START if you are sure'
             self.start_button.config(state= 'enable')
         
         self.output_label['text']= output_text
@@ -168,13 +205,7 @@ class App(tk.Tk):
                             f'{self.g[0]}'])
     
 
-def main():
-    
-    return App()
-
 if __name__ == "__main__":
-    #app = App()
-    app= main()
- 
+    app = App()
     
     app.mainloop()

@@ -237,7 +237,7 @@ def I_from_Cp(target):
 
 
 #%%Plot the curves
-fig= plt.Figure(figsize=(13,4))
+fig= plt.Figure(figsize=(13,4), facecolor= '#f9cb9c')
 
 spec = gridspec.GridSpec(ncols=2, nrows=1,
                          wspace=0.2,
@@ -399,6 +399,8 @@ root.title(f'TCI simulator. {drug_name}, {model} model')
 root.columnconfigure(0, weight=1)
 root.columnconfigure(1, weight=7)
 
+root.configure(bg= '#b0ebf4')
+
 input_frame= ttk.Frame(root, 
                        borderwidth= 5, 
                        relief= 'raised', 
@@ -417,11 +419,11 @@ show_frame.grid(column=1, row=0)
 
 def cet_up():
     global newCet 
-    newCet= newCet + 0.2 
-    print (newCet)
+    newCet= newCet + 0.1
+    
 def cet_down():
     global newCet
-    newCet= newCet - 0.2
+    newCet= newCet - 0.1
     if newCet <0.:
         newCet= 0.
 def cet_set():
