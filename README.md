@@ -31,3 +31,5 @@ The script shows three exemples and the relation among three commonly used varia
 
 ### /tests
 Some selected script I wrote when developing the simulator.
+### requirements.txt <br>
+The file shows a list with the packages installed in the python virtual environment I used to write this code
