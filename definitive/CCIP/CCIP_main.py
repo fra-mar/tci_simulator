@@ -70,10 +70,13 @@ upd_time= 10 #the pump is updated every ten seconds
 step= 0 #pump changes infusion rate in steps, upd_time apart.
 d_time= 1 #calculations made for this seconds interval
 
+#Activate for test / debugging
+'''
 weight= 75 #kg
 height= 170 #cm
 age= 35 #yr
 gender= 'm'
+'''
 if gender== 'm':
     g_string= 'Male'
 if gender== 'f':
@@ -341,9 +344,9 @@ def update(frame):
     t_counter= np.hstack((t_counter,t))
     
     #plot this
-    if t>500:
-        ax_c.set_xlim([t_counter[-1]-500,t_counter[-1]+300])
-        ax_a.set_xlim([t_counter[-1]-500,t_counter[-1]+300])
+    if t>600:
+        ax_c.set_xlim([t_counter[-1]-600,t_counter[-1]+200])
+        ax_a.set_xlim([t_counter[-1]-600,t_counter[-1]+200])
     
     la.set_data(t_counter, I_log)
 
