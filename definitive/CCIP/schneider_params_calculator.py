@@ -41,11 +41,11 @@ def schneider_params_calc(g,a,w,h):
     ke0= 0.459
     model= 'Schnider'
     drug_name= 'Propofol'
-    units= (r'$\mu g\ ml^{-1}$', r'mg$\ s^{-1}$')
+    units= (r'$\mu g\ ml^{-1}$', r'mg$\ Kg^{-1}\ h^{-1}$')
     ec50= 3.
     
-    schneider_params=[model, 
-                      drug_name,
+    schneider_params=[drug_name, 
+                      model,
                       units, ec50,
                       vd_central,
                       vd_rapid_peripheral,

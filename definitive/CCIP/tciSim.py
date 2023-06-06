@@ -10,8 +10,9 @@ choose an option
 import tkinter as tk
 from tkinter import ttk
 
-from subprocess import Popen
-
+#from subprocess import Popen
+from multiprocessing import Pool, Process
+import os
 
 class App(tk.Tk):
     def __init__(self):
@@ -187,8 +188,35 @@ class App(tk.Tk):
         
         self.output_label['text']= output_text
         
-    def start(self):        
+    def run_CCIP(self, m,a,w,h,g):
+        os.system(f"python CCIP_main.py '{m}' {a} {w} {h} {g}")
         
+    def start(self):        
+        args1=(self.m, 
+                self.a,
+                self.w,
+                self.h,
+                self.g[0])
+        
+        args2=(self.m2, 
+                self.a,
+                self.w,
+                self.h,
+                self.g[0])
+        
+        
+        if self.second_pump.get()== 'yes':
+            p1= Process(target= self.run_CCIP, args= args1)
+            p2= Process(target= self.run_CCIP, args= args2)
+            p1.start()
+            p2.start()
+            p1.join()
+            p2.join()  
+        else:    
+            p1= Process(target= self.run_CCIP, args= args1)
+            p1.start()
+            p1.join() 
+        '''
         Popen(['python', 'CCIP_main.py',
                         f'{self.m}',
                         f'{self.a}',
@@ -203,7 +231,7 @@ class App(tk.Tk):
                             f'{self.w}',
                             f'{self.h}',
                             f'{self.g[0]}'])
-    
+        '''
 
 if __name__ == "__main__":
     app = App()

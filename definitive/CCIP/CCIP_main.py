@@ -84,7 +84,10 @@ if gender== 'f':
 
 
 params[7:]= [k/60 for k in params[7:]] #converts microrate_k to min^-1 to s^-1
-model, drug_name, units, ec50, vd_1, vd_2, vd_3, k10, k12, k21, k13, k31, ke0= params #vol in L^-1
+drug_name, model, units, ec50= params[:4]
+print(drug_name)
+
+vd_1, vd_2, vd_3, k10, k12, k21, k13, k31, ke0= params[4:] #vol in L^-1
 #Model is seen as a 4-compartment, considering effect compartment the 4th
 #Being its vd 1/1e4th av central and thus its microrate constants k14, k41
 vd_4= vd_1/1e4
@@ -142,7 +145,7 @@ while True:
             e[0]=e[1]/1e3 #this prevents a division by zero later on
             break 
     if j==10:
-        print(a1/vd_1)
+        #print(a1/vd_1)
         Cp_at_10_inf_unit= a1/vd_1 #variable useful to prevent wobbling of Cp
 t_peak= j-2
 
@@ -236,7 +239,18 @@ def I_from_Cp(target):
         infRate= 0.
     return infRate
 
-#%% Plot it
+#%% Convert units to show nice infusion rates:
+def I_weight_time(I):
+    if drug_name== 'Propofol':
+        return (I/weight)*3600
+    elif drug_name== 'Sufentanil':
+        return(I/weight)* 60
+    elif drug_name== 'Remifentanil':
+        return (I/weight)* 60
+    else:
+        print ('unknown drug')
+        return I
+        
 
 
 #%%Plot the curves
@@ -244,7 +258,7 @@ fig= plt.Figure(figsize=(13,4), facecolor= '#f9cb9c')
 
 spec = gridspec.GridSpec(ncols=2, nrows=1,
                          wspace=0.2,
-                         hspace=0.5, width_ratios=[3, 1])
+                         hspace=0.2, width_ratios=[3, 1])
 
 ax_c= fig.add_subplot(spec[0]) #for concentrations
 ax_a= fig.add_subplot(spec[1]) #for amounts
@@ -292,7 +306,7 @@ ax_c.text(0.76, 0.01, 'min', fontsize=fs*0.8, color= '#2f847c',
                       alpha=0.3, transform=ax_c.transAxes)
 ax_c.text(0.0, 1.03, f'{drug_name}', fontsize=fs*1.8, color= '#2f847c',
                       alpha=0.8, transform=ax_c.transAxes)
-ax_c.text(0.5, 1.03, f'Model:{model}. {g_string}, {weight} Kg, {height} cm', 
+ax_c.text(0.45, 1.03, f'{model}. {g_string}, {age:.0f}y, {weight}Kg, {height}cm', 
                       fontsize=fs*0.8, color= '#2f847c',
                       alpha=0.5, transform=ax_c.transAxes)
 #titles and legends
@@ -367,7 +381,7 @@ def update(frame):
     text_Cet.set_text(f'Cet: {Cet:.1f}')
     text_Ce.set_text(f'Ce: {C4[-1]:.2f}')
     text_Cp.set_text(f'Cp: {C1[-1]:.2f}')
-    text_I.set_text(f'IRate: {I:.2f}')
+    text_I.set_text(f'IRate: {I_weight_time(I):.2f}')
     text_dose.set_text(f'TotalDose: {np.sum(I_log):.1f}')
     text_time.set_text(f'{t_counter[-1]/60:.1f} ')
     newCet_label['text']= f'{newCet:.2f}'
@@ -448,7 +462,7 @@ def exit_b():
                             C3.reshape(-1,1), 
                             C4.reshape(-1,1), 
                             I_log.reshape(-1,1)))
-    print (C1.shape)
+    
     np.savetxt('pkData.csv', arr_to_save, delimiter=',',
                header='Seconds,C1,C2,C3,C4,I')
     root.destroy()

@@ -29,9 +29,9 @@ def sufenta_params_calc():
     k13= clearance_slow_periph/vd_central
     k31= clearance_slow_periph/vd_slow_peripheral
     ke0= 0.119
-    drug_name= 'Sufentanyl'
+    drug_name= 'Sufentanil'
     model= 'Gepts'
-    units= (r'$ng\ ml^{-1}$', r'$\mu g\ s^{-1}$')
+    units= (r'$ng\ ml^{-1}$', r'$\mu g\ Kg^{-1}\ min^{-1}$')
     ec50= 0.23
     
     params=[drug_name,

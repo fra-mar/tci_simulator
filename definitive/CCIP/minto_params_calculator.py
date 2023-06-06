@@ -39,11 +39,11 @@ def minto_params_calc(g,a,w,h):
     ke0= keo(a)
     model= 'Minto'
     drug_name= 'Remifentanil'
-    units= (r'$ng\ ml^{-1}$', r'$\mu g\ s^{-1}$')
-    ec50=3.
+    units= (r'$ng\ ml^{-1}$', r'$\mu g\ Kg^{-1}\ min^{-1}$')
+    ec50= 3.0
     
-    params=[model, 
-            drug_name,
+    params=[drug_name, 
+            model,
             units, ec50,
             vd_central,
             vd_rapid_peripheral,
