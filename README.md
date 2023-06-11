@@ -1,5 +1,8 @@
 # Target gontrolled infusion pump for anesthesia delivery.<br> A simulator.
 
+Distributed under the GNU General Public License v3.0
+https://www.gnu.org/licenses/gpl-3.0.en.html
+
 Anesthesia delivery methods can be roughly divided in two groups: inhalational and intravenous.
 When only intravenous anesthesia is administered the term *Total IntraVenous Anesthesia* (TIVA) is commonly used.
 >The pharmacokinetics of these drugs can be described best with a three-compartment model. 
