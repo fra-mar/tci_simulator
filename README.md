@@ -14,8 +14,8 @@ I searched the literature and programmed this simulator in Python.
 
 In that journey I wrote shorter scripts to understand both the pharmacology and the coding. 
 
-### /definitive/CCIP 
-The script tci_sim is the "main menu". There drug-model, patient characteristics can be chosen. 
+### /definitive/CCIP_v1.1
+The script tciSim.py is the "main menu". There you choose drug-model and sex, weight, height and age.
 
 ### /definitive/fast_infRate_....
 The folder contains a script that shows what happens to the plasma concentration when propofol is adminstered at a fast infusion rate.
