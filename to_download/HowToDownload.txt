@@ -4,13 +4,13 @@ https://www.dropbox.com/sh/i3d5zi8ihdnskkq/AAAh3pZzINLfIzelNLuowEFHa?dl=0
 
 ...and download the tciSim... version for your Operative System.
 
-If you are using your institution's computer you probably need Administrator permission.
+If you are using your institution's computer you'll probably need Administrator privileges.
 _________________________
 
 LINUX
 tciSim_v1.1_linux.tar.gz: in Debian, Ubuntu, Mint... open a terminal Shell and type
 
-tar –xvzf tciSim_v1.1_linux.tar.gz
+$ tar –xvzf tciSim_v1.1_linux.tar.gz
 
 Then you run the program by cd to the tciSim_v1.1_linux folder and typing ./tciSim OR from the Desktop, GUI, navigating to the folder and double clicking on tciSim file. 
 
