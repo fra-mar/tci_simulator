@@ -1,4 +1,4 @@
-# Target gontrolled infusion pump for anesthesia delivery.<br> A simulator.
+# Target Controlled Infusion pump for anesthesia delivery.<br> A simulator.
 
 Distributed under the GNU General Public License v3.0
 https://www.gnu.org/licenses/gpl-3.0.en.html
