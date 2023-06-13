@@ -30,7 +30,7 @@ I added the possibility to adjust the microvariables: quite often only central v
 
 ### /definitive/decay.py
 Pharmacokinetics is all about exponential decay. 
-The script shows three exemples and the relation among three commonly used variables that describe the process.
+The script shows three examples and the relation among three commonly used variables that describe the process.
 
 ### /tests
 Some selected script I wrote when developing the simulator.
