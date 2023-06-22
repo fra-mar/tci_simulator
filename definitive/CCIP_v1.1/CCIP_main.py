@@ -268,9 +268,11 @@ ax_a= fig.add_subplot(spec[1]) #for amounts
 ax_c.set_xlim([0,800])
 ax_a.set_xlim([0,820])
 ax_c.set_ylim([0,ec50*3])
-ax_a.set_ylim([0,0.5])
+ax_a.set_ylim([0,0.3])
 ax_c.grid(alpha= 0.5)
 ax_a.grid(alpha= 0.5)
+ax_a.set(yticklabels= [])
+ax_a.tick_params(left= False)
 ax_c.set_xlabel('Seconds')
 ax_c.set_ylabel(f'Concentrations in {units[0]}')
 ax_a.set_xlabel('Seconds')
@@ -479,7 +481,10 @@ def exit_b():
                             C4.reshape(-1,1), 
                             I_log.reshape(-1,1)))
     
-    np.savetxt('pkData.csv', arr_to_save, delimiter=',',
+    subject_data= '_'+ gender + '_' + str(age) + '_' + str(weight)+'_'+str(height)
+    file_name= 'pkData'+ drug_name + model + subject_data+'.csv'
+    
+    np.savetxt(file_name, arr_to_save, delimiter=',',
                header='Seconds,C1,C2,C3,C4,I')
     root.destroy()
     
