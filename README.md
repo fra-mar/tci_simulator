@@ -1,4 +1,4 @@
-# Target gontrolled infusion pump for anesthesia delivery.<br> A simulator.
+# Target Controlled Infusion pump for anesthesia delivery.<br> A simulator.
 
 Distributed under the GNU General Public License v3.0
 https://www.gnu.org/licenses/gpl-3.0.en.html
@@ -8,7 +8,7 @@ When only intravenous anesthesia is administered the term *Total IntraVenous Ane
 >The pharmacokinetics of these drugs can be described best with a three-compartment model. 
 The nature of a multicompartment model makes difficult both to hold a constant effect site or plasma concentration with a fast
 infusion rate and stimate the drug concentration at the effect site. 
-<br>Several models are available for propofol, remifentanyl and sufentanyl, probably the most commonly used drugs of this kind. 
+<br>Several models are available for propofol, remifentanil and sufentanil, probably the most commonly used drugs of this kind. 
 Those models are programmed in commercially available pumps and allow the anesthesiologist to program the target, i.e., the desired concentration at
 the effect site or in the plasma, hence the term *Target Controlled Infusion* (TCI).
 
@@ -30,7 +30,7 @@ I added the possibility to adjust the microvariables: quite often only central v
 
 ### /definitive/decay.py
 Pharmacokinetics is all about exponential decay. 
-The script shows three exemples and the relation among three commonly used variables that describe the process.
+The script shows three examples and the relation among three commonly used variables that describe the process.
 
 ### /tests
 Some selected script I wrote when developing the simulator.
