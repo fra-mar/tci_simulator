@@ -1,5 +1,6 @@
+compElvSch/
 pkpd_venv/
 __pycache__
-test_pyInstaller/
 pkData.csv
 QR_code_tciSim_GitHub.png
+compilations/

@@ -35,8 +35,8 @@ from scipy.integrate import odeint
 def load_params(model, gender, age, weight, height):
 
     if model== 'Schnider, propofol':
-        from schneider_params_calculator import schneider_params_calc
-        par= schneider_params_calc(gender,age,weight,height)
+        from schnider_params_calculator import schnider_params_calc
+        par= schnider_params_calc(gender,age,weight,height)
     
     elif model== 'Minto, remifentanil':
         from minto_params_calculator import minto_params_calc

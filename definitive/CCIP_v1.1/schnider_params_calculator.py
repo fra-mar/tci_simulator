@@ -22,7 +22,7 @@ age= 60 #yr
 gender= 'm'
 lbm= lbm_calc(gender, weight, height)
 
-def schneider_params_calc(g,a,w,h):
+def schnider_params_calc(g,a,w,h):
     lbm= lbm_calc(g,w,h)
     #See table 2 in article mentioned above
     vd_central= 4.27 #L
@@ -44,7 +44,7 @@ def schneider_params_calc(g,a,w,h):
     units= (r'$\mu g\ ml^{-1}$', r'mg$\ Kg^{-1}\ h^{-1}$')
     ec50= 3.
     
-    schneider_params=[drug_name, 
+    schnider_params=[drug_name, 
                       model,
                       units, ec50,
                       vd_central,
@@ -55,5 +55,5 @@ def schneider_params_calc(g,a,w,h):
                       k13,k31,
                       ke0
                       ]
-    return schneider_params
+    return schnider_params
 
