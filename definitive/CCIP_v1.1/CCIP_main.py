@@ -481,8 +481,8 @@ def exit_b():
                             C4.reshape(-1,1), 
                             I_log.reshape(-1,1)))
     
-    subject_data= '_'+ gender + '_' + str(age) + '_' + str(weight)+'_'+str(height)
-    file_name= 'pkData'+ drug_name + model + subject_data+'.csv'
+    subject_data= '_'+ gender + '_' + str(int(age)) + '_' + str(int(weight))+'_'+str(int(height))
+    file_name= 'data'+ drug_name[:4] + model + subject_data+'.csv'
     
     np.savetxt(file_name, arr_to_save, delimiter=',',
                header='Seconds,C1,C2,C3,C4,I')
