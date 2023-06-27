@@ -1,3 +1,7 @@
+definitive/CCIP_v1.1/init_params.txt
+
+test_eleveld/
+*.pyc
 compElvSch/
 pkpd_venv/
 __pycache__
