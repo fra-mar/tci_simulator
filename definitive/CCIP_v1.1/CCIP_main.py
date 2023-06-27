@@ -29,8 +29,10 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 import numpy as np
 from scipy.integrate import odeint
+import os
 
 def load_params(model, gender, age, weight, height):
 
@@ -474,6 +476,18 @@ def paus_res():
     paused= not paused
 
 def exit_b():
+    root.destroy()
+
+def save_b():
+    
+    #check if saved_data dir exist. If false creates it
+    pwd= os.getcwd()
+    path= os.path.join(pwd, 'saved_data')
+    if os.path.isdir(path):
+        pass
+    else:
+        os.mkdir(path)
+
     arr_to_save= np.hstack((t_counter.reshape(-1,1), 
                             C1.reshape(-1,1), 
                             C2.reshape(-1,1), 
@@ -482,12 +496,15 @@ def exit_b():
                             I_log.reshape(-1,1)))
     
     subject_data= '_'+ gender + '_' + str(int(age)) + '_' + str(int(weight))+'_'+str(int(height))
-    file_name= 'data'+ drug_name[:4] + model + subject_data+'.csv'
+    atTime= 't'+str(t)+'s'
+    file_name= 'data'+ drug_name[:4] + model + subject_data + atTime + '.csv'
     
-    np.savetxt(file_name, arr_to_save, delimiter=',',
+    path_file= os.path.join(path, file_name)
+    np.savetxt(path_file, arr_to_save, delimiter=',',
                header='Seconds,C1,C2,C3,C4,I')
-    root.destroy()
-    
+    messagebox.showinfo('Saved data',f'The data were saved \
+                        here:\n\n{path}\n\nName:\n{file_name}')  
+
 up_fast_button= ttk.Button(input_frame, text= 'UP fast', command= cet_up_fast).grid(column= 0, 
                                                     row=0,
                                                     padx=5, sticky= tk.S)
@@ -511,11 +528,16 @@ pause_button= ttk.Button(input_frame, text= 'START/PAUSE', command= paus_res).gr
                                                     row=9,
                                                     padx=5, pady=10)
 
-    
+save_button= ttk.Button(input_frame, text= 'SAVE', 
+                        command= save_b).grid(column= 0, 
+                                                    row=7,
+                                                    padx=5, pady=10)
+
+   
 
 exit_button= ttk.Button(input_frame, text= 'EXIT', 
                         command= exit_b).grid(column= 0, 
-                                                    row=7,
+                                                    row=8,
                                                     padx=5, pady=20)
 
 new_Cet_text= ttk.Label(master= input_frame, text= 'New Cet', background= "#b0ebf4")
@@ -533,13 +555,3 @@ ani = FuncAnimation(fig, update, frames = gen, interval = 300,
 plt.show()   
      
 root.mainloop()
-
-
-    
-    
-    
-
-
-
-    
-
