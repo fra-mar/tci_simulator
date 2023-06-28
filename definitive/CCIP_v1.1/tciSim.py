@@ -29,7 +29,7 @@ class App(tk.Tk):
         self.models = ('Schnider, propofol',
                        'Minto, remifentanil',
                        'Gepts, sufentanil',
-                       'Eleveld(test), propofol')
+                       'Eleveld, propofol')
         self.genders= ('male', 'female')
         
         self.age= tk.DoubleVar(self,  value= 50)
@@ -88,14 +88,6 @@ class App(tk.Tk):
                                  background= '#f9cb9c')
         label_genders.grid(column=0, row=6, **paddings)
         
-        warning='Eleveld model not fully implemented'
-        label_warning= tk.Label(self,  text=warning,
-                                 background= '#f9cb9c',
-                                 foreground= '#38761d',
-                                 font= ('Cambria',8))
-        label_warning.grid(column=2, row=0, 
-                           columnspan= 2,sticky=tk.W)
-        
         doThis='''
         1. Choose model, age, weight, height and sex.
         2. Click on 'CREATE PUMP'. 
@@ -103,8 +95,9 @@ class App(tk.Tk):
         4. Create as many pumps as you wish.
         5. Rearrange the pumps in your screen.
         6. Click on each pump's START button.
-	7. Use UP and DOWN buttons to select Cet.
-	8. Click on SET to confirm the new Cet.
+        7. Use UP and DOWN buttons to select Cet.
+        8. Click on SET to confirm the new Cet.
+        9. SAVE creates a file with the simulated data.
         '''
         label_doThis= ttk.Label(self, text= doThis,
                                background= '#f9cb6f',

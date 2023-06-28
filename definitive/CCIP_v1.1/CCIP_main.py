@@ -48,7 +48,7 @@ def load_params(model, gender, age, weight, height):
         from sufenta_gepts_params_calculator import sufenta_params_calc
         par= sufenta_params_calc()
     
-    elif model== 'Eleveld(test), propofol':
+    elif model== 'Eleveld, propofol':
         from eleveld_propofol_params_calculator import eleveld_params_calc
         par= eleveld_params_calc(gender,age,weight,height)
     else:
@@ -427,6 +427,9 @@ root.columnconfigure(1, weight=7)
 
 root.configure(bg= '#b0ebf4')
 
+#%% Create a frame for control/input actions and 
+# the big one for displaying graphs.
+
 input_frame= ttk.Frame(root, 
                        borderwidth= 5, 
                        relief= 'raised', 
@@ -434,14 +437,14 @@ input_frame= ttk.Frame(root,
                        height= 1600) 
 input_frame.grid(column=0, row=0)
 
-show_frame= ttk.Frame(root, 
+show_frame= ttk.Frame(root,
                        borderwidth= 5, 
                        relief= 'raised', 
                        padding= 5,
                        height= 1600)
 show_frame.grid(column=1, row=0)
 
-#%% Make a button in input_frame
+#%% Buttons in input_frame: display and functionality
 
 def cet_up_slow():
     global newCet 
@@ -505,47 +508,51 @@ def save_b():
     messagebox.showinfo('Saved data',f'The data were saved \
                         here:\n\n{path}\n\nName:\n{file_name}')  
 
-up_fast_button= ttk.Button(input_frame, text= 'UP fast', command= cet_up_fast).grid(column= 0, 
+up_fast_button= tk.Button(input_frame, text= 'UP fast', background= '#f9cb9c',command= cet_up_fast).grid(column= 0, 
                                                     row=0,
                                                     padx=5, sticky= tk.S)
-up_button= ttk.Button(input_frame, text= 'UP slow', command= cet_up_slow).grid(column= 0, 
+up_button= tk.Button(input_frame, text= 'UP slow', background= '#f9cb9c',command= cet_up_slow).grid(column= 0, 
                                                     row=1,
                                                     padx=15, pady=0,
                                                     sticky=tk.N)
-down_button= ttk.Button(input_frame, text= 'DOWN slow', 
+down_button= tk.Button(input_frame, text= 'DOWN slow', background= '#f9cb9c',
                         command= cet_down_slow).grid(column= 0, 
                                                     row=4,
                                                     padx=15, sticky=tk.S)
-down_fast_button= ttk.Button(input_frame, text= 'DOWN fast', 
+down_fast_button= tk.Button(input_frame, text= 'DOWN fast', background= '#f9cb9c',
                         command= cet_down_fast).grid(column= 0, 
                                                     row=5,
                                                     padx=5, sticky=tk.N)
-set_button= ttk.Button(input_frame, text= 'SET', command= cet_set).grid(column= 0, 
+set_button= tk.Button(input_frame, text= 'SET', background= '#f9cb9c',
+                      command= cet_set).grid(column= 0, 
                                                     row=6,
                                                     padx=5, pady=20, sticky= tk.S)
 
-pause_button= ttk.Button(input_frame, text= 'START/PAUSE', command= paus_res).grid(column= 0, 
-                                                    row=9,
-                                                    padx=5, pady=10)
-
-save_button= ttk.Button(input_frame, text= 'SAVE', 
-                        command= save_b).grid(column= 0, 
+pause_button= tk.Button(input_frame, text= 'START/PAUSE', background= 'green',
+                      foreground= 'white',command= paus_res).grid(column= 0,  
                                                     row=7,
                                                     padx=5, pady=10)
+ 
 
-   
-
-exit_button= ttk.Button(input_frame, text= 'EXIT', 
+exit_button= tk.Button(input_frame, text= 'EXIT', background= 'red',
+                       foreground= 'white',  
                         command= exit_b).grid(column= 0, 
-                                                    row=8,
+                                                    row=10,
                                                     padx=5, pady=20)
+
+save_button= tk.Button(input_frame, text= 'SAVE', background= '#f9cb9c',
+                        command= save_b).grid(column= 0, 
+                                                    row=9,
+                                                    padx=5, pady=10)
+   
 
 new_Cet_text= ttk.Label(master= input_frame, text= 'New Cet', background= "#b0ebf4")
 new_Cet_text.grid(column= 0, row= 2,padx= 5, pady= 10, sticky= tk.S)                                                            
+
 newCet_label= ttk.Label(master= input_frame, font= ('Helvetica', 12,'bold'),background= "#b0ebf4" )
 newCet_label.grid(column= 0,row=3,padx= 5, pady= 10, sticky= tk.N)
-#newCet_label['text']= newCet.......moved to update animation function
 
+#%% create 2 canvases in the Tkinter root window
 canvas = FigureCanvasTkAgg(fig, master= show_frame)
 canvas.get_tk_widget().grid(column=1,row=0, padx=10)
        
