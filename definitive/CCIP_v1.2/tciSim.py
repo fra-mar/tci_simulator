@@ -18,7 +18,7 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.geometry("800x300+10+10")
-        self.title('TCI simulator. v1.1. Start menu')
+        self.title('TCI simulator. v1.2. Start menu')
         self.configure(bg= '#f9cb9c')
         paddings = {'padx': 5, 'pady': 5}
         s= ttk.Style()
